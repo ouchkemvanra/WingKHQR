@@ -65,7 +65,7 @@ final class KHQRActionButtonView: UIView{
     actionButtonList = actionButtonListItem.map({
       let btn = KHQRVerticalButton.init(actionType: $0)
       btn.fontSize = 10
-      btn.setImage(.init(systemName: "info.circle"), for: .normal)
+      btn.setImage($0.icon, for: .normal)
       btn.setTitle($0.title, for: .normal)
       btn.onTap = {type in
         
