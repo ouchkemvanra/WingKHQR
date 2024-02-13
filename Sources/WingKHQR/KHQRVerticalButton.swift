@@ -46,7 +46,7 @@ class KHQRVerticalButton: UIButton {
 
   //MARK: - Init
   required init?(coder: NSCoder) {
-    self.actionType = .init(type: .save, title: "Save", icon: .init(systemName: "info.circle")!)
+    self.actionType = .init(type: .save, title: "Save", icon: nil)
     super.init(coder: coder)
     if #available(iOS 13.0, *) {
 
@@ -57,7 +57,7 @@ class KHQRVerticalButton: UIButton {
   }
 
   override init(frame: CGRect) {
-    self.actionType = .init(type: .save, title: "Save", icon: .init(systemName: "info.circle")!)
+    self.actionType = .init(type: .save, title: "Save", icon: nil)
     super.init(frame: frame)
     if #available(iOS 13.0, *) {
 
