@@ -17,7 +17,6 @@ final class KHQRCurrencyImageView: UIView{
   private lazy var currencyImageView: UIImageView = {
     let imv = UIImageView()
     imv.contentMode = .scaleAspectFit
-    imv.backgroundColor = .systemPink
     return imv
   }()
   

@@ -48,7 +48,6 @@ class KHQRView: UIView{
   private
   lazy var qrImage: KHQRCurrencyImageView = {
     let imv = KHQRCurrencyImageView()
-    imv.backgroundColor = .cyan
     imv.contentMode = .scaleAspectFit
     return imv
   }()

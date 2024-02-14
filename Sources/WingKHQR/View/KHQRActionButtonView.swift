@@ -6,17 +6,7 @@
 //
 
 import UIKit
-final class KHQRActionButtonItem{
-  var type: KHQRActionButtonType
-  var title: String
-  var icon: UIImage?
-  
-  init(type: KHQRActionButtonType, title: String, icon: UIImage?) {
-    self.type = type
-    self.title = title
-    self.icon = icon
-  }
-}
+
 enum KHQRActionButtonType: Int{
   case screenshot = 0
   case save = 1

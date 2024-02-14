@@ -46,7 +46,7 @@ class KHQRVerticalButton: UIButton {
 
   //MARK: - Init
   required init?(coder: NSCoder) {
-    self.actionType = .init(type: .save, title: "Save", icon: nil)
+    self.actionType = .init(type: .save, title: "Save", icon:nil)
     super.init(coder: coder)
     if #available(iOS 13.0, *) {
 
@@ -98,14 +98,14 @@ class KHQRVerticalButton: UIButton {
   
   @objc
   private func didTapOnButton(_ sender: KHQRVerticalButton){
-    
+    onTap?(actionType.type)
   }
   
   private func setupSeparator(){
     /// Separator
     leftSeparator.layout{
       addSubview($0)
-      $0.leading()
+      $0.leading(-1)
         .centerY()
         .width(1)
         .height(34)

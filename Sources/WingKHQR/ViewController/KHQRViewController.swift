@@ -10,7 +10,7 @@ import UIKit
 protocol KHQRViewControllerDelegate: NSObject{
   func generateQR() -> String
   func generateDeeplink() -> String
-  func switchAccount() -> String
+  func switchAccount() -> KHQRAccount
 }
 
 public class KHQRViewController: UIViewController{
