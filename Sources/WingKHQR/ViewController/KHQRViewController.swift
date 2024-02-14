@@ -8,12 +8,12 @@
 import UIKit
 
 protocol KHQRViewControllerDelegate: NSObject{
-  func generateQR() -> String
-  func generateDeeplink() -> String
   func switchAccount() -> KHQRAccount
+  func enteAmount()
+  func onActionTap(_ type: KHQRActionButtonType)
 }
 
-open class KHQRViewController: UIViewController{
+public class KHQRViewController: UIViewController{
   // MARK: - To Do
   /// Override Properties
   /// Bottom ActionButton item
@@ -60,6 +60,13 @@ open class KHQRViewController: UIViewController{
     }
   }
   
+  /// Receiving to image
+  var receivingToImage: UIImage?{
+    didSet{
+      mainView.setReceivingToRightImage(receivingToImage)
+    }
+  }
+  
   /// Exchange Rate Disclaimer Text
   var exchangeRateDisclaimerText: String?{
     didSet{
@@ -86,9 +93,27 @@ open class KHQRViewController: UIViewController{
   private
   lazy var mainView: KHQRMainView = {
     let view = KHQRMainView.init(actionButotnList: bottomActionButtonList)
-    
+    view.onEnterAmount = {
+      self.delegate?.enteAmount()
+    }
+    view.onActionTap = {[weak self] type in
+      self?.delegate?.onActionTap(type)
+    }
     return view
   }()
+  
+  // MARK: - Store Prop
+  var khqrAccount: KHQRAccount?
+  
+  // MARK: - Init
+  init(_ data: KHQRAccount?){
+    self.khqrAccount = data
+    super.init(nibName: nil, bundle: nil)
+  }
+  
+  required init?(coder: NSCoder) {
+    fatalError("init(coder:) has not been implemented")
+  }
   
   // MARK: - Life Cycle
   public override func viewDidLoad() {
@@ -99,6 +124,9 @@ open class KHQRViewController: UIViewController{
   // MARK: - Prepare view layout
   private func prepareLayout(){
     view.backgroundColor = .black.withAlphaComponent(0.5)
+    if let data = khqrAccount {
+      mainView.setAccountData(data)
+    }
     mainView.layout{
       view.addSubview($0)
       $0.center()

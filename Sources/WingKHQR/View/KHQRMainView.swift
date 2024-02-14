@@ -89,6 +89,12 @@ class KHQRMainView: UIView{
     view.layer.cornerRadius = 25
     view.clipsToBounds = true
     view.backgroundColor = .gray.withAlphaComponent(0.6)
+    view.onClick = {[weak self] type in
+      guard self?.khqrAccount != nil else{
+        return
+      }
+      self?.onActionTap?(type)
+    }
     return view
   }()
   
@@ -102,7 +108,12 @@ class KHQRMainView: UIView{
     return stackView
   }()
   
+  // MARK: - Callback
+  var onEnterAmount: KHQRCallback?
+  var onActionTap: KHQRCallbackType<KHQRActionButtonType>?
+  
   // MARK: - Store Prop
+  var khqrAccount: KHQRAccount?
   let width: CGFloat = UIScreen.main.bounds.width - (KHQRConfig.khqrViewPadding * 2)
   var actionButtonList: [KHQRActionButtonItem] = []
   
@@ -169,5 +180,26 @@ extension KHQRMainView{
   
   final func setCurrencyImage(_ currency: UIImage?){
     qrView.setCurrencyImage(currency)
+  }
+  
+  final func setReceivingToRightImage(_ image: UIImage?){
+    receivingToView.setRightImage(image)
+  }
+}
+
+extension KHQRMainView{
+  final func setAccountData(_ data: KHQRAccount){
+    
+  }
+}
+
+// MARK: - Action Control
+extension KHQRMainView{
+  @objc
+  private func didTapOnEnterAmount(){
+    guard khqrAccount != nil else{
+      return
+    }
+    onEnterAmount?()
   }
 }

@@ -69,4 +69,8 @@ class KHQRReceivingToView: UIView{
   final func setRecievingToText(_ text: String?){
     receivingToLabel.text = text
   }
+  
+  final func setRightImage(_ image: UIImage?){
+    accountButton.setImage(image, for: .normal)
+  }
 }
