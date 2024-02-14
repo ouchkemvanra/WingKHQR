@@ -13,7 +13,7 @@ protocol KHQRViewControllerDelegate: NSObject{
   func switchAccount() -> KHQRAccount
 }
 
-public class KHQRViewController: UIViewController{
+open class KHQRViewController: UIViewController{
   // MARK: - To Do
   /// Override Properties
   /// Bottom ActionButton item
