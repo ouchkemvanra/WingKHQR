@@ -116,7 +116,7 @@ public class KHQRViewController: UIViewController{
   }
   
   // MARK: - Life Cycle
-  public override func viewDidLoad() {
+  open override func viewDidLoad() {
     super.viewDidLoad()
     prepareLayout()
   }
