@@ -7,7 +7,7 @@
 
 import UIKit
 
-@objcMembers open class RevampKHQRActivityViewController: UIActivityViewController{
+@objcMembers final class RevampKHQRActivityViewController: UIActivityViewController{
   /// The preview container view
   private var preview: UIVisualEffectView!
 
