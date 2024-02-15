@@ -6,7 +6,7 @@
 //
 
 import UIKit
-final class KHQRActionButtonItem{
+public class KHQRActionButtonItem{
   var type: KHQRActionButtonType
   var title: String
   var icon: UIImage?
