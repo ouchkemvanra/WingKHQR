@@ -17,7 +17,7 @@ open class KHQRViewController: UIViewController{
   // MARK: - To Do
   /// Override Properties
   /// Bottom ActionButton item
-  public var bottomActionButtonList: [KHQRActionButtonItem] {
+  open var bottomActionButtonList: [KHQRActionButtonItem] {
     get{
       return [
       
@@ -26,68 +26,68 @@ open class KHQRViewController: UIViewController{
   }
   
   /// Top White Background Bank Logo with round corner
-  var logo: UIImage? {
+  public var logo: UIImage? {
     didSet{
       mainView.setTopLogo(logo)
     }
   }
   
   /// KHQR Logo
-  var khqrLogo: UIImage?{
+  public var khqrLogo: UIImage?{
     didSet{
       mainView.setkhqrLogo(khqrLogo)
     }
   }
   
   /// Currency Logo
-  var currencyImage: UIImage?{
+  public var currencyImage: UIImage?{
     didSet{
       mainView.setCurrencyImage(currencyImage)
     }
   }
   
   /// Description Text under Top Logo
-  var topDescriptionText: String?{
+  public var topDescriptionText: String?{
     didSet{
       mainView.setDescriptionText(topDescriptionText)
     }
   }
   
   /// Receiveing To Text
-  var receivingToText: String?{
+  public var receivingToText: String?{
     didSet{
       mainView.setReceivingToText(receivingToText)
     }
   }
   
   /// Receiving to image
-  var receivingToImage: UIImage?{
+  public var receivingToImage: UIImage?{
     didSet{
       mainView.setReceivingToRightImage(receivingToImage)
     }
   }
   
   /// Exchange Rate Disclaimer Text
-  var exchangeRateDisclaimerText: String?{
+  public var exchangeRateDisclaimerText: String?{
     didSet{
       mainView.setExchangeRateDisclaimerText(exchangeRateDisclaimerText)
     }
   }
   
   /// Enter Amount Text
-  var enterAmountText: String?{
+  public var enterAmountText: String?{
     didSet{
       mainView.setEnterAmountText(enterAmountText)
     }
   }
   
   /// Should Remove Save button when has amount
-  var shouldRemoveSave: Bool{
+  public var shouldRemoveSave: Bool{
     true
   }
   
   // MARK: - Delegate
-  weak var delegate: KHQRViewControllerDelegate?
+  public weak var delegate: KHQRViewControllerDelegate?
   
   // MARK: - Layout
   private
@@ -106,7 +106,7 @@ open class KHQRViewController: UIViewController{
   var khqrAccount: KHQRAccount?
   
   // MARK: - Init
-  init(_ data: KHQRAccount?){
+  public init(_ data: KHQRAccount?){
     self.khqrAccount = data
     super.init(nibName: nil, bundle: nil)
   }

@@ -7,7 +7,7 @@
 
 import UIKit
 
-final class KHQRScreeshotMainView: UIView{
+public  class KHQRScreeshotMainView: UIView{
   
   // MARK: - Layout
   private 

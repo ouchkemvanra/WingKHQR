@@ -11,7 +11,7 @@ public class KHQRActionButtonItem{
   var title: String
   var icon: UIImage?
   
-  init(type: KHQRActionButtonType, title: String, icon: UIImage?) {
+  public init(type: KHQRActionButtonType, title: String, icon: UIImage?) {
     self.type = type
     self.title = title
     self.icon = icon

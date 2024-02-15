@@ -14,7 +14,7 @@ public class KHQRAccount{
   var accountNumber: String
   var qr: String
   
-  init(name: String, amount: String, currency: String, accountNumber: String, qr: String) {
+  public init(name: String, amount: String, currency: String, accountNumber: String, qr: String) {
     self.name = name
     self.amount = amount
     self.currency = currency
