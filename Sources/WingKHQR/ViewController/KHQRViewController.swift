@@ -7,7 +7,7 @@
 
 import UIKit
 
-protocol KHQRViewControllerDelegate: NSObject{
+public protocol KHQRViewControllerDelegate: NSObject{
   func switchAccount() -> KHQRAccount
   func enteAmount()
   func onActionTap(_ type: KHQRActionButtonType)
@@ -26,68 +26,68 @@ open class KHQRViewController: UIViewController{
   }
   
   /// Top White Background Bank Logo with round corner
-  public var logo: UIImage? {
+  var logo: UIImage? {
     didSet{
       mainView.setTopLogo(logo)
     }
   }
   
   /// KHQR Logo
-  public var khqrLogo: UIImage?{
+  var khqrLogo: UIImage?{
     didSet{
       mainView.setkhqrLogo(khqrLogo)
     }
   }
   
   /// Currency Logo
-  public var currencyImage: UIImage?{
+  var currencyImage: UIImage?{
     didSet{
       mainView.setCurrencyImage(currencyImage)
     }
   }
   
   /// Description Text under Top Logo
-  public var topDescriptionText: String?{
+  var topDescriptionText: String?{
     didSet{
       mainView.setDescriptionText(topDescriptionText)
     }
   }
   
   /// Receiveing To Text
-  public var receivingToText: String?{
+  var receivingToText: String?{
     didSet{
       mainView.setReceivingToText(receivingToText)
     }
   }
   
   /// Receiving to image
-  public var receivingToImage: UIImage?{
+  var receivingToImage: UIImage?{
     didSet{
       mainView.setReceivingToRightImage(receivingToImage)
     }
   }
   
   /// Exchange Rate Disclaimer Text
-  public var exchangeRateDisclaimerText: String?{
+  var exchangeRateDisclaimerText: String?{
     didSet{
       mainView.setExchangeRateDisclaimerText(exchangeRateDisclaimerText)
     }
   }
   
   /// Enter Amount Text
-  public var enterAmountText: String?{
+  var enterAmountText: String?{
     didSet{
       mainView.setEnterAmountText(enterAmountText)
     }
   }
   
   /// Should Remove Save button when has amount
-  public var shouldRemoveSave: Bool{
+  var shouldRemoveSave: Bool{
     true
   }
   
   // MARK: - Delegate
-  public weak var delegate: KHQRViewControllerDelegate?
+  weak var delegate: KHQRViewControllerDelegate?
   
   // MARK: - Layout
   private

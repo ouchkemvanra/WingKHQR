@@ -7,7 +7,7 @@
 
 import Foundation
 
-final class KHQRAccount{
+public class KHQRAccount{
   var name: String
   var amount: String
   var currency: String

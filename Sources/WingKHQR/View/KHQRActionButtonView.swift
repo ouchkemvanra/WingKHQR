@@ -7,7 +7,7 @@
 
 import UIKit
 
-enum KHQRActionButtonType: Int{
+public enum KHQRActionButtonType: Int{
   case screenshot = 0
   case save = 1
   case share  = 2
