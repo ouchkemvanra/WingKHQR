@@ -13,7 +13,7 @@ protocol KHQRViewControllerDelegate: NSObject{
   func onActionTap(_ type: KHQRActionButtonType)
 }
 
-public class KHQRViewController: UIViewController{
+open class KHQRViewController: UIViewController{
   // MARK: - To Do
   /// Override Properties
   /// Bottom ActionButton item
