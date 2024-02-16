@@ -91,6 +91,7 @@ open class KHQRViewController: KHQRDialogueViewController{
   }
   
   public var shareImageTitle: String?
+  public var shareImageLogo: UIImage?
   
   // MARK: - Delegate
   public weak var delegate: KHQRViewControllerDelegate?
@@ -183,7 +184,7 @@ extension KHQRViewController{
       
       ShareSheetManager.shared.showShareSheet(img, title: self.shareImageTitle ?? "", from: self.screenshotViewController, saveImageSuccess: {
         self.delegate?.saveImageSucess()
-      }, logoIcon: self.logo!)
+      }, logoIcon: self.shareImageLogo!)
     })
   }
 }

@@ -77,7 +77,7 @@ class KHQRMainView: UIView{
     label.font = KHQRFont.size(10)
     label.numberOfLines = 2
     label.textColor = .white
-//    label.isHidden = true
+    label.isHidden = true
     label.sizeToFit()
     label.textAlignment = .center
     label.width(width)
@@ -197,6 +197,8 @@ extension KHQRMainView{
     self.setCurrencyImage(data?.currencyImage)
     self.setQrImage(qr)
     self.qrView.setAccountData(data)
+    
+    self.exchangeRateLabel.isHidden = data?.amount == "0"
   }
 }
 
