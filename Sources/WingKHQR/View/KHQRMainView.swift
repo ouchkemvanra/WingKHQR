@@ -56,6 +56,9 @@ class KHQRMainView: UIView{
   lazy var receivingToView: KHQRReceivingToView = {
     let view = KHQRReceivingToView()
     view.backgroundColor = .clear
+    view.accountTapHandler = {[weak self] in
+      self?.showAccountList?()
+    }
     return view
   }()
   
@@ -109,6 +112,7 @@ class KHQRMainView: UIView{
   // MARK: - Callback
   var onEnterAmount: KHQRCallback?
   var onActionTap: KHQRCallbackType<KHQRActionButtonType>?
+  var showAccountList: KHQRCallback?
   
   // MARK: - Store Prop
   var khqrAccount: KHQRAccount?
@@ -199,6 +203,29 @@ extension KHQRMainView{
     self.qrView.setAccountData(data)
     
     self.exchangeRateLabel.isHidden = data?.amount == "0"
+    self.setAttentionVisible(show: data?.amount != "0")
+  }
+  
+  private func setAttentionVisible(show: Bool, animated: Bool = true) {
+    UIView.animate(withDuration: animated ? 0.3 : 0.0, delay: 0, options: [.curveEaseInOut], animations: { [weak self] in
+      guard let self = self else { return }
+      self.exchangeRateLabel.alpha = show ? 1.0 : 0.0
+      self.exchangeRateLabel.isHidden = !show
+      if show{
+        self.actionButton.removeButton(.save)
+      } else{
+        self.actionButton.showButton(.save)
+      }
+      self.setNeedsLayout()
+      self.layoutIfNeeded()
+    }, completion: { _ in
+      self.exchangeRateLabel.isHidden = !show
+      if show{
+        self.actionButton.removeButton(.save)
+      } else{
+        self.actionButton.showButton(.save)
+      }
+    })
   }
 }
 

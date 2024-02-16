@@ -106,6 +106,7 @@ open class KHQRViewController: KHQRDialogueViewController{
     view.onActionTap = {[weak self] type in
       self?.onActionTap(type)
     }
+    
     let tap = UITapGestureRecognizer.init(target: self, action: #selector(dismissView))
     view.addGestureRecognizer(tap)
     view.isUserInteractionEnabled = true

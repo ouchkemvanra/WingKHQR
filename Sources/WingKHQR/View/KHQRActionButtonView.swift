@@ -81,6 +81,13 @@ final class KHQRActionButtonView: UIView{
     }
   }
   
+  final
+  func showButton(_ actionType: KHQRActionButtonType){
+    if let button = actionButtonList.first(where: {$0.actionType.type == actionType}){
+      button.isHidden = false
+    }
+  }
+  
   @objc
   private 
   func didTapOnButton(_ sender: KHQRVerticalButton){
