@@ -52,7 +52,7 @@ class KHQRHeaderView: UIView{
     
     logoImageView.layout{
       bgView.addSubview($0)
-      $0.size(width: 16, height: 70)
+      $0.size(width: 70, height: 16)
         .center()
     }
     

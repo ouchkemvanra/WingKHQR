@@ -8,7 +8,6 @@
 import UIKit
 
 public protocol KHQRViewControllerDelegate: NSObject{
-  func switchAccount() -> KHQRAccount
   func showAccountList()
   func enteAmount()
   func onActionTap(_ type: KHQRActionButtonType)
@@ -113,7 +112,7 @@ open class KHQRViewController: KHQRDialogueViewController{
   }()
   
   // MARK: - Store Prop
-  var khqrAccount: KHQRAccount?
+  public var khqrAccount: KHQRAccount?
   var screenshotViewController: KHQRScreenshotViewController!
   
   // MARK: - Init
@@ -130,7 +129,7 @@ open class KHQRViewController: KHQRDialogueViewController{
   open override func viewDidLoad() {
     super.viewDidLoad()
     prepareLayout()
-    setQRImage()
+    mainView.setAccountData(khqrAccount)
   }
   
   // MARK: - Prepare view layout
@@ -143,15 +142,10 @@ open class KHQRViewController: KHQRDialogueViewController{
       $0.center()
     }
   }
-  private func setQRImage(){
-    guard let data = khqrAccount else {return}
-    let img = QRGenerator.shared.generateQRCode(from: data.qr)
-    mainView.setQrImage(img)
-  }
+  
   open override func viewWillAppear(_ animated: Bool) {
     super.viewWillAppear(animated)
     addScreenshotObserve()
-    
   }
   
   open override func viewDidDisappear(_ animated: Bool) {
@@ -194,6 +188,7 @@ extension KHQRViewController{
   }
 }
 
+// MARK: - Action Share Screenshot Save
 extension KHQRViewController{
   private func onActionTap(_ type: KHQRActionButtonType){
     guard khqrAccount != nil else{
@@ -227,5 +222,12 @@ extension KHQRViewController{
   
   func saveImageLocally(image: UIImage){
     delegate?.saveImage(image)
+  }
+}
+
+extension KHQRViewController{
+  final func setKHQRAccount(_ khqrAccount: KHQRAccount){
+    self.khqrAccount = khqrAccount
+    self.mainView.setAccountData(khqrAccount)
   }
 }

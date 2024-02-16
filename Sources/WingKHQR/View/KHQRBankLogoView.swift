@@ -50,6 +50,8 @@ final class KHQRBankLogoView: UIView{
       $0.center()
         .top(8)
         .bottom(8)
+        .leading()
+        .trailing()
     }
   }
 }

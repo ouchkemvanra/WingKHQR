@@ -23,6 +23,7 @@ class KHQRView: UIView{
     label.textAlignment = .left
     label.numberOfLines = 1
     label.text = "xxxx xxxx"
+    label.height(20)
     return label
   }()
   
@@ -32,6 +33,7 @@ class KHQRView: UIView{
     label.textAlignment = .left
     label.numberOfLines = 1
     label.setAmountKHQR(amount: "100 ", currency: "USD")
+    label.height(25)
     return label
   }()
   
@@ -131,5 +133,10 @@ extension KHQRView{
   
   final func setCurrencyImage(_ currency: UIImage?){
     qrImage.setCurrencyImage(currency)
+  }
+  
+  final func setAccountData(_ data: KHQRAccount?){
+    self.accountNameLabel.text = data?.name ?? ""
+    self.amountLabel.setAmountKHQR(amount: data?.amount ?? "", currency: data?.currency ?? "")
   }
 }

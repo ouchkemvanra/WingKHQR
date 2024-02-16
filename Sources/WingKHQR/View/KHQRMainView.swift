@@ -68,6 +68,7 @@ class KHQRMainView: UIView{
     btn.backgroundColor = .gray.withAlphaComponent(0.6)
     btn.layer.cornerRadius = 25
     btn.clipsToBounds = true
+    btn.addTarget(self, action: #selector(didTapOnEnterAmount), for: .touchUpInside)
     return btn
   }()
   
@@ -185,8 +186,17 @@ extension KHQRMainView{
 }
 
 extension KHQRMainView{
-  final func setAccountData(_ data: KHQRAccount){
+  final func setAccountData(_ data: KHQRAccount?){
+    self.khqrAccount = data
     
+    ///Receiving To
+    self.receivingToView.setAccountNumber(data?.accountNumber ?? "")
+    
+    /// Set QR Data
+    let qr = QRGenerator.shared.generateQRCode(from: data?.qr ?? "")
+    self.setCurrencyImage(data?.currencyImage)
+    self.setQrImage(qr)
+    self.qrView.setAccountData(data)
   }
 }
 

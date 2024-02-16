@@ -22,7 +22,6 @@ class KHQRReceivingToView: UIView{
     btn.setTitleColor(.white, for: .normal)
     btn.setTitleColor(UIColor(hex: "#8494A0"), for: .highlighted)
     btn.imageEdgeInsets.right = -4
-    //   btn.setImage(R.image.ic_curve_triangle(), for: .normal)
     btn.titleLabel?.textAlignment = .center
     btn.titleLabel?.font = KHQRFont.size(14, weight: .bold)
     btn.addTarget(self, action: #selector(onAccountTap), for: .touchUpInside)
@@ -72,5 +71,9 @@ class KHQRReceivingToView: UIView{
   
   final func setRightImage(_ image: UIImage?){
     accountButton.setImage(image, for: .normal)
+  }
+  
+  final func setAccountNumber(_ account: String){
+    accountButton.setTitle(account, for: .normal)
   }
 }
