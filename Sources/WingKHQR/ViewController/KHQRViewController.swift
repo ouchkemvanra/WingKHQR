@@ -227,7 +227,7 @@ extension KHQRViewController{
 }
 
 extension KHQRViewController{
-  final func setKHQRAccount(_ khqrAccount: KHQRAccount){
+  public func setKHQRAccount(_ khqrAccount: KHQRAccount){
     self.khqrAccount = khqrAccount
     self.mainView.setAccountData(khqrAccount)
   }
