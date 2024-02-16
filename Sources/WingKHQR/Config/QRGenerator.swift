@@ -40,4 +40,12 @@ final class QRGenerator {
     // Prevent crash
     return UIImage()
   }
+  
+  func renderQRCodeImage(from view: UIView) -> UIImage? {
+    UIGraphicsBeginImageContextWithOptions(view.bounds.size, false, 0.0)
+    view.drawHierarchy(in: view.bounds, afterScreenUpdates: false)
+    let renderView = UIGraphicsGetImageFromCurrentImageContext()
+    UIGraphicsEndImageContext()
+    return renderView
+  }
 }

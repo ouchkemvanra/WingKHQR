@@ -33,9 +33,13 @@ open class KHQRScreenshotViewController: UIViewController{
         return 20
     }
   }()
+  
   private
   lazy var qrView: KHQRView = {
     let view = KHQRView()
+    view.layer.cornerRadius = 20
+    view.clipsToBounds = true
+    view.backgroundColor = .white
     
     return view
   }()
@@ -60,14 +64,18 @@ open class KHQRScreenshotViewController: UIViewController{
   
   private
   func prepareLayout(){
-    let height = (UIScreen.main.bounds.width - (padding * 2) * 29) / 20
+    view.backgroundColor = UIColor(hex: "#575757")
+    let width = UIScreen.main.bounds.width - (padding * 2)
+    let height = (width * 29) / 20
     qrView.setQrImage(QRGenerator.shared.generateQRCode(from: data.qr))
     qrView.layout{
       view.addSubview($0)
       $0.center()
         .height(height)
-        .leading(padding)
-        .trailing(padding)
+        .width(width)
     }
+  }
+  final func getMainView() -> UIView{
+    return qrView
   }
 }

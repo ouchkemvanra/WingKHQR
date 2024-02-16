@@ -88,11 +88,8 @@ class KHQRMainView: UIView{
     let view = KHQRActionButtonView.init(actionButtonList: actionButtonList)
     view.layer.cornerRadius = 25
     view.clipsToBounds = true
-    view.backgroundColor = .gray.withAlphaComponent(0.6)
+    view.backgroundColor = .white.withAlphaComponent(0.2)
     view.onClick = {[weak self] type in
-      guard self?.khqrAccount != nil else{
-        return
-      }
       self?.onActionTap?(type)
     }
     return view
@@ -201,5 +198,10 @@ extension KHQRMainView{
       return
     }
     onEnterAmount?()
+  }
+  final func getMainViewSize() -> CGRect{
+    let width = (UIScreen.main.bounds.width - (KHQRConfig.khqrViewPadding * 2))
+    let height = ((UIScreen.main.bounds.width - (KHQRConfig.khqrViewPadding * 2)) * 29)/20
+    return .init(x: 0, y: 0, width: width, height: height)
   }
 }

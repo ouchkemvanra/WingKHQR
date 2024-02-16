@@ -9,11 +9,16 @@ import UIKit
 
 public protocol KHQRViewControllerDelegate: NSObject{
   func switchAccount() -> KHQRAccount
+  func showAccountList()
   func enteAmount()
   func onActionTap(_ type: KHQRActionButtonType)
+  func saveImage(_ image: UIImage)
+  func saveImageSucess()
+  func saveImageFail()
+  func shareLink()
 }
 
-open class KHQRViewController: UIViewController{
+open class KHQRViewController: KHQRDialogueViewController{
   // MARK: - To Do
   /// Override Properties
   /// Bottom ActionButton item
@@ -86,6 +91,8 @@ open class KHQRViewController: UIViewController{
     true
   }
   
+  public var shareImageTitle: String?
+  
   // MARK: - Delegate
   public weak var delegate: KHQRViewControllerDelegate?
   
@@ -97,18 +104,22 @@ open class KHQRViewController: UIViewController{
       self.delegate?.enteAmount()
     }
     view.onActionTap = {[weak self] type in
-      self?.delegate?.onActionTap(type)
+      self?.onActionTap(type)
     }
+    let tap = UITapGestureRecognizer.init(target: self, action: #selector(dismissView))
+    view.addGestureRecognizer(tap)
+    view.isUserInteractionEnabled = true
     return view
   }()
   
   // MARK: - Store Prop
   var khqrAccount: KHQRAccount?
+  var screenshotViewController: KHQRScreenshotViewController!
   
   // MARK: - Init
   public init(_ data: KHQRAccount?){
     self.khqrAccount = data
-    super.init(nibName: nil, bundle: nil)
+    super.init()
   }
   
   public required init?(coder: NSCoder) {
@@ -119,11 +130,11 @@ open class KHQRViewController: UIViewController{
   open override func viewDidLoad() {
     super.viewDidLoad()
     prepareLayout()
+    setQRImage()
   }
   
   // MARK: - Prepare view layout
   private func prepareLayout(){
-    view.backgroundColor = .black.withAlphaComponent(0.5)
     if let data = khqrAccount {
       mainView.setAccountData(data)
     }
@@ -131,5 +142,90 @@ open class KHQRViewController: UIViewController{
       view.addSubview($0)
       $0.center()
     }
+  }
+  private func setQRImage(){
+    guard let data = khqrAccount else {return}
+    let img = QRGenerator.shared.generateQRCode(from: data.qr)
+    mainView.setQrImage(img)
+  }
+  open override func viewWillAppear(_ animated: Bool) {
+    super.viewWillAppear(animated)
+    addScreenshotObserve()
+    
+  }
+  
+  open override func viewDidDisappear(_ animated: Bool) {
+    super.viewDidDisappear(animated)
+    removeScreenshotObserver()
+  }
+}
+
+// MARK: - Action Control
+extension KHQRViewController{
+  @objc
+  func dismissView(){
+    self.dismiss(animated: true, completion: nil)
+  }
+}
+
+// MARK: - Screenshot
+extension KHQRViewController{
+  private func removeScreenshotObserver(){
+    NotificationCenter.default.removeObserver(self, name: UIApplication.userDidTakeScreenshotNotification, object: nil)
+  }
+  private func addScreenshotObserve(){
+    NotificationCenter.default.addObserver(self, selector: #selector(screenshotTaken), name: UIApplication.userDidTakeScreenshotNotification, object: nil)
+  }
+  
+  @objc private func screenshotTaken(){
+    screenshotTap()
+  }
+  private func screenshotTap(){
+    guard let data = khqrAccount else {return}
+    self.screenshotViewController = KHQRScreenshotViewController.init(data)
+    presentModal(screenshotViewController, animated: true, completion: {
+      
+      guard let img = QRGenerator.shared.renderQRCodeImage(from: self.screenshotViewController.getMainView()) else{return}
+      
+      ShareSheetManager.shared.showShareSheet(img, title: self.shareImageTitle ?? "", from: self.screenshotViewController, saveImageSuccess: {
+        self.delegate?.saveImageSucess()
+      }, logoIcon: self.logo!)
+    })
+  }
+}
+
+extension KHQRViewController{
+  private func onActionTap(_ type: KHQRActionButtonType){
+    guard khqrAccount != nil else{
+      return
+    }
+    
+    switch type {
+      case .screenshot:
+        screenshotTap()
+      case .save:
+        saveQRImage()
+      case .share:
+        delegate?.shareLink()
+        break
+    }
+  }
+  
+  private func saveQRImage(){
+    guard let acc = khqrAccount else { return }
+    let screenshotView = KHQRView.init(data: acc, frame: mainView.getMainViewSize())
+    screenshotView.layer.cornerRadius = 16
+    screenshotView.setNeedsLayout()
+    screenshotView.setNeedsDisplay()
+    screenshotView.layoutIfNeeded()
+    screenshotView.clipsToBounds = true
+    
+    guard  let image = screenshotView.image() else{return}
+    
+    saveImageLocally(image: image)
+  }
+  
+  func saveImageLocally(image: UIImage){
+    delegate?.saveImage(image)
   }
 }

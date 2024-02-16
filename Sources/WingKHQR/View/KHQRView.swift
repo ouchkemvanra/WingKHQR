@@ -57,10 +57,18 @@ class KHQRView: UIView{
   let largePadding: CGFloat = KHQRConfig.sizeClass == .compact ? 8:(KHQRConfig.sizeClass == .regular ? 20:24)
   let headerHeight: CGFloat = KHQRConfig.sizeClass == .compact ? 40 : 50
   
+  // MARK: - Store Prop
+  var data: KHQRAccount?
+  
   // MARK: - Init
   override init(frame: CGRect) {
     super.init(frame: frame)
     prepareLayout()
+  }
+  
+  init(data: KHQRAccount, frame: CGRect){
+    self.data = data
+    super.init(frame: frame)
   }
   
   required init?(coder: NSCoder) {

@@ -57,9 +57,7 @@ final class KHQRActionButtonView: UIView{
       btn.fontSize = 10
       btn.setImage($0.icon, for: .normal)
       btn.setTitle($0.title, for: .normal)
-      btn.onTap = {type in
-        
-      }
+      btn.addTarget(self, action: #selector(didTapOnButton(_:)), for: .touchUpInside)
       let width = (UIScreen.main.bounds.width - (KHQRConfig.khqrViewPadding * 2))/3
       btn.width(width)
       stackView.addArrangedSubview(btn)

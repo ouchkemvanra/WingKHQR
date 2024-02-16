@@ -12,14 +12,12 @@ final class KHQRImageActivityItemSource: NSObject, UIActivityItemSource {
   
   private let title: String
   private let image: UIImage
-  private var isKHQR: Bool
   private var placeHolder: UIImage?
   private let logoIcon: UIImage
   
-  init(title: String, image: UIImage, isKHQR: Bool = false, placeholder: UIImage? = nil, logoIcon: UIImage) {
+  init(title: String, image: UIImage, placeholder: UIImage? = nil, logoIcon: UIImage) {
     self.title = title
     self.image = image
-    self.isKHQR = isKHQR
     self.placeHolder = placeholder
     self.logoIcon = logoIcon
     super.init()

@@ -109,3 +109,30 @@ extension UIImage {
    }
  }
 }
+
+extension UIViewController{
+  final func presentModal(_ viewControllerToPresent: UIViewController,
+                          animated: Bool = true,
+                          completion: (() -> Void)? = nil) {
+    viewControllerToPresent.modalPresentationStyle = .overFullScreen//.overCurrentContext
+    viewControllerToPresent.modalTransitionStyle = .crossDissolve
+    viewControllerToPresent.modalPresentationCapturesStatusBarAppearance = true
+    (tabBarController ?? self).present(viewControllerToPresent, animated: animated, completion: completion)
+  }
+}
+
+extension UIView {
+    /// Creates an image from the view's contents, using its layer.
+    ///
+    /// - Returns: An image, or nil if an image couldn't be created.
+    func image() -> UIImage? {
+      UIGraphicsBeginImageContextWithOptions(bounds.size, self.isOpaque, 0)
+        guard let context = UIGraphicsGetCurrentContext() else { return nil }
+        context.saveGState()
+        layer.render(in: context)
+        context.restoreGState()
+        guard let image = UIGraphicsGetImageFromCurrentImageContext() else { return nil }
+        UIGraphicsEndImageContext()
+        return image
+    }
+}

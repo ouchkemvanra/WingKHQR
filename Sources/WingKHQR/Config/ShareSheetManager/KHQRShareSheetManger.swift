@@ -15,7 +15,7 @@ final class ShareSheetManager {
   private init() {}
   
   func showShareSheet(_ image: UIImage, title: String , from vc: UIViewController, saveImageSuccess: KHQRCallback? = nil, logoIcon: UIImage){
-    let activityVC = RevampKHQRActivityViewController(activityItems: [OptionalTextActivityItemSource(text: title), KHQRImageActivityItemSource.init(title: title, image: image, isKHQR: true, logoIcon: logoIcon)], applicationActivities: nil)
+    let activityVC = RevampKHQRActivityViewController(activityItems: [OptionalTextActivityItemSource(text: title), KHQRImageActivityItemSource.init(title: title, image: image, logoIcon: logoIcon)], applicationActivities: nil)
       
       activityVC.completionWithItemsHandler = { (activityType, completed:Bool, returnedItems:[Any]?, error: Error?) in
         //MARK: - If activity was cancelled
