@@ -9,13 +9,13 @@ import UIKit
 
 open class KHQRScreenshotViewController: UIViewController{
   // MARK: - To Do
-  var khqrLog: UIImage?{
+  open var khqrLog: UIImage?{
     didSet{
       qrView.setKHQRLogo(khqrLog)
     }
   }
   
-  var currenyImage: UIImage?{
+  open var currenyImage: UIImage?{
     didSet{
       qrView.setCurrencyImage(currenyImage)
     }

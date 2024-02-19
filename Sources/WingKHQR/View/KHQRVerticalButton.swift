@@ -128,6 +128,7 @@ class KHQRVerticalButton: UIButton {
     } else{
       
     }
+    setupSeparator()
   }
   
   private func setVerticalImage(){
