@@ -7,7 +7,7 @@
 
 import UIKit
 
-public class KHQRAccount{
+open class KHQRAccount{
   public var name: String
   public var accountNumber: String
   public var qr: String
