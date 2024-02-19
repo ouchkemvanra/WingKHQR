@@ -214,15 +214,21 @@ extension KHQRViewController{
   private func saveQRImage(){
     guard let acc = khqrAccount else { return }
     let screenshotView = KHQRView.init(data: acc, frame: mainView.getMainViewSize())
+    screenshotView.setKHQRLogo(khqrLogo)
+    screenshotView.setCurrencyImage(currencyImage)
     screenshotView.layer.cornerRadius = 16
     screenshotView.setNeedsLayout()
     screenshotView.setNeedsDisplay()
     screenshotView.layoutIfNeeded()
+    screenshotView.backgroundColor = .white
     screenshotView.clipsToBounds = true
     
-    guard  let image = screenshotView.image() else{return}
+    guard  let image = screenshotView.image() else{
+      
+      return}
     
     saveImageLocally(image: image)
+    mainView.setQrImage(image)
   }
   
   func saveImageLocally(image: UIImage){

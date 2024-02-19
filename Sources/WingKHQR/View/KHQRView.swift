@@ -71,6 +71,9 @@ class KHQRView: UIView{
   init(data: KHQRAccount, frame: CGRect){
     self.data = data
     super.init(frame: frame)
+    prepareLayout()
+    let qr = QRGenerator.shared.generateQRCode(from: data.qr)
+    setQrImage(qr)
   }
   
   required init?(coder: NSCoder) {
