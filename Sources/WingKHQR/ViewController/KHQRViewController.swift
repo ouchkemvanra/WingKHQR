@@ -215,7 +215,7 @@ extension KHQRViewController{
     guard let acc = khqrAccount else { return }
     let screenshotView = KHQRView.init(data: acc, frame: mainView.getMainViewSize())
     screenshotView.setKHQRLogo(khqrLogo)
-    screenshotView.setCurrencyImage(currencyImage)
+    screenshotView.setCurrencyImage(acc.currencyImage)
     screenshotView.layer.cornerRadius = 16
     screenshotView.setNeedsLayout()
     screenshotView.setNeedsDisplay()
@@ -224,7 +224,6 @@ extension KHQRViewController{
     screenshotView.clipsToBounds = true
     
     guard  let image = screenshotView.image() else{
-      
       return}
     
     saveImageLocally(image: image)
