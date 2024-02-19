@@ -195,7 +195,7 @@ extension KHQRMainView{
     
     ///Receiving To
     let currency = data?.currency ?? ""
-    let accountWithCurrency = (data?.accountNumber ?? "") + " (\(currency.uppercased())"
+    let accountWithCurrency = (data?.accountNumber ?? "") + " (\(currency.uppercased()))"
     self.receivingToView.setAccountNumber(accountWithCurrency)
     
     /// Set QR Data
