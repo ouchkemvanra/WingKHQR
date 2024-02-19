@@ -59,7 +59,8 @@ open class KHQRScreenshotViewController: UIViewController{
   open override func viewDidLoad() {
     super.viewDidLoad()
     prepareLayout()
-    
+    currenyImage = data.currencyImage
+    qrView.setAccountData(data)
   }
   
   private
@@ -75,7 +76,7 @@ open class KHQRScreenshotViewController: UIViewController{
         .width(width)
     }
   }
-  final func getMainView() -> UIView{
+  public func getMainView() -> UIView{
     return qrView
   }
 }
