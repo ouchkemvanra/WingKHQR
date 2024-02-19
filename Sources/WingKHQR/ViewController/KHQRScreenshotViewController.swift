@@ -47,7 +47,7 @@ open class KHQRScreenshotViewController: UIViewController{
   // MARK: - Init
   private var data: KHQRAccount
   
-  init(_ data: KHQRAccount){
+  public init(_ data: KHQRAccount){
     self.data = data
     super.init(nibName: nil, bundle: nil)
   }
