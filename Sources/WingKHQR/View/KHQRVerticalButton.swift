@@ -53,7 +53,6 @@ class KHQRVerticalButton: UIButton {
     } else {
       commonInit()
     }
-    setupSeparator()
   }
 
   override init(frame: CGRect) {
@@ -64,7 +63,6 @@ class KHQRVerticalButton: UIButton {
     } else {
       commonInit()
     }
-    setupSeparator()
   }
   init(actionType: KHQRActionButtonItem){
     self.actionType = actionType
@@ -74,7 +72,6 @@ class KHQRVerticalButton: UIButton {
     } else {
       commonInit()
     }
-    setupSeparator()
   }
 
   convenience init(title: String) {
@@ -94,6 +91,7 @@ class KHQRVerticalButton: UIButton {
           verticalTitleLabel.heightAnchor.constraint(greaterThanOrEqualToConstant: 25.0)
       ])
     imageEdgeInsets.bottom = 8
+    setupSeparator()
   }
   
   @objc
@@ -103,13 +101,13 @@ class KHQRVerticalButton: UIButton {
   
   private func setupSeparator(){
     /// Separator
-//    leftSeparator.layout{
-//      addSubview($0)
-//      $0.leading(-1)
-//        .centerY()
-//        .width(1)
-//        .height(34)
-//    }
+    leftSeparator.layout{
+      addSubview($0)
+      $0.leading()
+        .centerY()
+        .width(1)
+        .height(34)
+    }
   }
 
   // MARK: - Prepare LAyout
