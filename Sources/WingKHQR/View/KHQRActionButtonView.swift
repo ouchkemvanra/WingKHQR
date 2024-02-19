@@ -80,6 +80,7 @@ final class KHQRActionButtonView: UIView{
   func removeButton(_ actionType: KHQRActionButtonType){
     if let button = actionButtonList.first(where: {$0.actionType.type == actionType}){
       button.isHidden = true
+      button.setNeedsLayout()
     }
   }
   
@@ -87,6 +88,7 @@ final class KHQRActionButtonView: UIView{
   func showButton(_ actionType: KHQRActionButtonType){
     if let button = actionButtonList.first(where: {$0.actionType.type == actionType}){
       button.isHidden = false
+      button.setNeedsLayout()
     }
   }
   
