@@ -103,7 +103,7 @@ class KHQRVerticalButton: UIButton {
     /// Separator
     leftSeparator.layout{
       addSubview($0)
-      $0.leading()
+      $0.leading(-1)
         .centerY()
         .width(1)
         .height(34)

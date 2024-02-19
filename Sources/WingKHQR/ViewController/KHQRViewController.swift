@@ -102,6 +102,7 @@ open class KHQRViewController: KHQRDialogueViewController{
   lazy var mainView: KHQRMainView = {
     let view = KHQRMainView.init(actionButotnList: bottomActionButtonList)
     view.onEnterAmount = {
+      
       self.delegate?.enteAmount()
     }
     view.onActionTap = {[weak self] type in

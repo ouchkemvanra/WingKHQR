@@ -136,3 +136,14 @@ extension UIView {
         return image
     }
 }
+extension Double {
+  var currencyFormat: String {
+    let symbol: String = self >= 0 ? "" : "-"
+    return symbol + Formatter.currencyFormatter.string(from: abs(self) as NSNumber).orEmpty
+  }
+  
+  var khCurrencyFormat: String {
+    let symbol: String = self >= 0 ? "" : "-"
+    return symbol + Formatter.khrCurrencyFormatter.string(from: abs(self) as NSNumber).orEmpty
+  }
+}

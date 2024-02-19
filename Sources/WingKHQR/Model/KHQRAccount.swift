@@ -11,11 +11,11 @@ open class KHQRAccount{
   public var name: String
   public var accountNumber: String
   public var qr: String
-  public var amount: String
+  public var amount: Double
   open var currency: String
   public var currencyImage: UIImage?
   
-  public init(name: String, amount: String, currency: String, accountNumber: String, qr: String, currencyImage: UIImage? = nil) {
+  public init(name: String, amount: Double, currency: String, accountNumber: String, qr: String, currencyImage: UIImage? = nil) {
     self.name = name
     self.amount = amount
     self.currency = currency

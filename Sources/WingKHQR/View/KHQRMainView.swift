@@ -204,11 +204,11 @@ extension KHQRMainView{
     self.setQrImage(qr)
     self.qrView.setAccountData(data)
     
-    self.exchangeRateLabel.isHidden = data?.amount == "0"
-    self.setAttentionVisible(show: data?.amount != "0")
+    self.exchangeRateLabel.isHidden = data?.amount == 0.0
+    self.setAttentionVisible(show: data?.amount != 0.0)
   }
   
-  private func setAttentionVisible(show: Bool, animated: Bool = true) {
+  final func setAttentionVisible(show: Bool, animated: Bool = true) {
     UIView.animate(withDuration: animated ? 0.3 : 0.0, delay: 0, options: [.curveEaseInOut], animations: { [weak self] in
       guard let self = self else { return }
       self.exchangeRateLabel.alpha = show ? 1.0 : 0.0

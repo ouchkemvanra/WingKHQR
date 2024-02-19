@@ -141,6 +141,7 @@ extension KHQRView{
   
   final func setAccountData(_ data: KHQRAccount?){
     self.accountNameLabel.text = (data?.name ?? "")
-    self.amountLabel.setAmountKHQR(amount: (data?.amount ?? "") + " ", currency: data?.currency ?? "")
+    let amountString = data?.currency.uppercased() == "USD" ? data?.amount.currencyFormat : data?.amount.khCurrencyFormat
+    self.amountLabel.setAmountKHQR(amount: (amountString ?? "") + " ", currency: data?.currency ?? "")
   }
 }
