@@ -11,6 +11,7 @@ public protocol KHQRViewControllerDelegate: NSObject{
   func showAccountList()
   func enteAmount()
   func onActionTap(_ type: KHQRActionButtonType)
+  func screenshotVC() -> KHQRScreenshotViewController
   func saveImage(_ image: UIImage)
   func saveImageSucess()
   func saveImageFail()
@@ -180,7 +181,7 @@ extension KHQRViewController{
   }
   private func screenshotTap(){
     guard let data = khqrAccount else {return}
-    self.screenshotViewController = KHQRScreenshotViewController.init(data)
+    self.screenshotViewController = delegate?.screenshotVC()
     presentModal(screenshotViewController, animated: true, completion: {
       
       guard let img = QRGenerator.shared.renderQRCodeImage(from: self.screenshotViewController.getMainView()) else{return}
