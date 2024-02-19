@@ -228,7 +228,6 @@ extension KHQRViewController{
       return}
     
     saveImageLocally(image: image)
-    mainView.setQrImage(image)
   }
   
   func saveImageLocally(image: UIImage){
