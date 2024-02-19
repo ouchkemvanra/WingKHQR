@@ -139,11 +139,11 @@ extension UIView {
 extension Double {
   var currencyFormat: String {
     let symbol: String = self >= 0 ? "" : "-"
-    return symbol + Formatter.currencyFormatter.string(from: abs(self) as NSNumber) ?? ""
+    return symbol + (Formatter.currencyFormatter.string(from: abs(self) as NSNumber) ?? "")
   }
   
   var khCurrencyFormat: String {
     let symbol: String = self >= 0 ? "" : "-"
-    return symbol + Formatter.khrCurrencyFormatter.string(from: abs(self) as NSNumber) ?? ""
+    return symbol + (Formatter.khrCurrencyFormatter.string(from: abs(self) as NSNumber) ?? "")
   }
 }
