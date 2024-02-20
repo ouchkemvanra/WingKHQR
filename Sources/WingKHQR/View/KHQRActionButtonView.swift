@@ -58,8 +58,7 @@ final class KHQRActionButtonView: UIView{
       btn.setImage($0.icon, for: .normal)
       btn.setTitle($0.title, for: .normal)
       btn.addTarget(self, action: #selector(didTapOnButton(_:)), for: .touchUpInside)
-      let width = (UIScreen.main.bounds.width - (KHQRConfig.khqrViewPadding * 2))/3
-//      btn.width(width)
+      let width = (UIScreen.main.bounds.width - (KHQRConfig.khqrMainViewPadding * 2))/3
       stackView.addArrangedSubview(btn)
       return btn
     })
@@ -67,7 +66,7 @@ final class KHQRActionButtonView: UIView{
   
   private
   func preppareLayout(){
-    let width = (UIScreen.main.bounds.width - (KHQRConfig.khqrViewPadding * 2))
+    let width = (UIScreen.main.bounds.width - (KHQRConfig.khqrMainViewPadding * 2))
     stackView.layout{
       addSubview($0)
       $0.fill()

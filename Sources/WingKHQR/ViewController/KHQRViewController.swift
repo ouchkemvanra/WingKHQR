@@ -145,7 +145,9 @@ open class KHQRViewController: KHQRDialogueViewController{
     }
     mainView.layout{
       view.addSubview($0)
-      $0.center()
+      $0.centerX()
+        .top(KHQRConfig.khqrMainViewTopBottomPadding)
+        .bottom(KHQRConfig.khqrMainViewTopBottomPadding)
     }
   }
   

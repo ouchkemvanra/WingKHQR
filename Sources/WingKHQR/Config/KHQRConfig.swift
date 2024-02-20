@@ -66,6 +66,16 @@ class KHQRConfig{
       return UIScreen.main.bounds.height < 812 ? 60 : 40
     }
   }()
+  
+  static let khqrMainViewPadding : CGFloat = {
+    switch KHQRConfig.sizeClass {
+      case .large,
+          .extraLarge:
+        return 40
+      default:
+        return 20
+    }
+  }()
   static let wingLogoHeight: CGFloat = {
     switch KHQRConfig.sizeClass {
     case.extraLarge:
@@ -76,6 +86,23 @@ class KHQRConfig{
       return 30
     case .regular:
       return 40
+    }
+  }()
+  static let khqrMainViewTopBottomPadding: CGFloat = {
+    switch KHQRConfig.sizeClass{
+      case .extraLarge, .large:
+        return 0
+      default:
+        return 16
+    }
+  }()
+  
+  static let khqrMainStackViewPadding: CGFloat = {
+    switch KHQRConfig.sizeClass{
+      case .extraLarge, .large:
+        return 16
+      default:
+        return 8
     }
   }()
 }

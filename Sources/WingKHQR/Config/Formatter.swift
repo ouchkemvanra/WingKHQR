@@ -20,7 +20,7 @@ final class Formatter {
     formatter.usesGroupingSeparator = true
     formatter.decimalSeparator = "."
     formatter.numberStyle = .decimal
-    formatter.maximumFractionDigits = 0
+    formatter.maximumFractionDigits = 2
     formatter.minimumFractionDigits = 2
     formatter.locale = Locale(identifier: "en_US")
     return formatter

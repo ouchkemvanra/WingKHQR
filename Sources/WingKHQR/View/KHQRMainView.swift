@@ -46,9 +46,10 @@ class KHQRMainView: UIView{
     view.backgroundColor = .white
     
     /// Constraint
-    let height: CGFloat = (width * 29)/20
+    let widthQR = UIScreen.main.bounds.width - (KHQRConfig.khqrViewPadding * 2)
+    let height: CGFloat = (widthQR * 29)/20
     view.height(height)
-    view.width(width)
+    view.width(widthQR)
     return view
   }()
   
@@ -80,7 +81,7 @@ class KHQRMainView: UIView{
     label.font = KHQRFont.size(10)
     label.numberOfLines = 2
     label.textColor = .white
-    label.isHidden = true
+    label.isHidden = false
     label.sizeToFit()
     label.textAlignment = .center
     label.width(width)
@@ -104,7 +105,7 @@ class KHQRMainView: UIView{
     let stackView = UIStackView()
     stackView.distribution = .fill
     stackView.axis = .vertical
-    stackView.spacing = 16
+    stackView.spacing = KHQRConfig.khqrMainStackViewPadding
     stackView.alignment = .center
     return stackView
   }()
@@ -116,7 +117,7 @@ class KHQRMainView: UIView{
   
   // MARK: - Store Prop
   var khqrAccount: KHQRAccount?
-  let width: CGFloat = UIScreen.main.bounds.width - (KHQRConfig.khqrViewPadding * 2)
+  let width: CGFloat = UIScreen.main.bounds.width - (KHQRConfig.khqrMainViewPadding * 2)
   var actionButtonList: [KHQRActionButtonItem] = []
   
   init(actionButotnList: [KHQRActionButtonItem]){
@@ -204,8 +205,8 @@ extension KHQRMainView{
     self.setQrImage(qr)
     self.qrView.setAccountData(data)
     
-    self.exchangeRateLabel.isHidden = data?.amount == 0.0
-    self.setAttentionVisible(show: data?.amount != 0.0)
+    self.exchangeRateLabel.isHidden = (data?.amount == 0.0)
+    self.setAttentionVisible(show: (data?.amount != 0.0))
   }
   
   final func setAttentionVisible(show: Bool, animated: Bool = true) {
