@@ -63,7 +63,7 @@ class KHQRConfig{
       return 70
 
     case .regular:
-      return UIScreen.main.bounds.height < 812 ? 60 : 40
+      return UIScreen.main.bounds.height < 812 ? 70 : 40
     }
   }()
   
