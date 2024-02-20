@@ -133,6 +133,9 @@ extension KHQRView{
   
   final func setQrImage(_ qr: UIImage?){
     qrImage.setQrImage(qr)
+    if data?.qr.isEmpty == true{
+      qrImage.setQrImage(nil)
+    }
   }
   
   final func setCurrencyImage(_ currency: UIImage?){

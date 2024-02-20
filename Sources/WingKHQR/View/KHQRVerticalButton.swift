@@ -123,10 +123,10 @@ class KHQRVerticalButton: UIButton {
     super.layoutSubviews()
     if #available(iOS 13.0, *){
       setVerticalImage()
+      setupSeparator()
     } else{
       
     }
-    setupSeparator()
   }
   
   private func setVerticalImage(){

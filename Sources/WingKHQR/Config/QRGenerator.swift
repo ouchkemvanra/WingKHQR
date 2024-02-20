@@ -13,7 +13,11 @@ final class QRGenerator {
   
   private init() {}
   
-  func generateQRCode(from string: String, scale: CGAffineTransform =  CGAffineTransform(scaleX: 5, y: 5)) -> UIImage {
+  func generateQRCode(from string: String, scale: CGAffineTransform =  CGAffineTransform(scaleX: 5, y: 5)) -> UIImage? {
+    guard string.isEmpty == false else {
+      return nil
+    }
+    
     let data = string.data(using: .utf8)
     
     if let filter = CIFilter(name: "CIQRCodeGenerator") {
@@ -38,7 +42,7 @@ final class QRGenerator {
     }
     
     // Prevent crash
-    return UIImage()
+    return nil
   }
   
   func renderQRCodeImage(from view: UIView) -> UIImage? {
