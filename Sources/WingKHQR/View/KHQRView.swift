@@ -34,6 +34,9 @@ class KHQRView: UIView{
     label.numberOfLines = 1
     label.setAmountKHQR(amount: "100 ", currency: "USD")
     label.height(25)
+    let tap = UITapGestureRecognizer(target: self, action: #selector(didTapOnAmount))
+    label.isUserInteractionEnabled = true
+    label.addGestureRecognizer(tap)
     return label
   }()
   
@@ -61,6 +64,7 @@ class KHQRView: UIView{
   
   // MARK: - Store Prop
   var data: KHQRAccount?
+  var onAmountTap: KHQRCallback?
   
   // MARK: - Init
   override init(frame: CGRect) {
@@ -127,6 +131,9 @@ class KHQRView: UIView{
 }
 
 extension KHQRView{
+  @objc private func didTapOnAmount(){
+    onAmountTap?()
+  }
   final func setKHQRLogo(_ logo: UIImage?){
     headerView.setLogoImage(logo)
   }

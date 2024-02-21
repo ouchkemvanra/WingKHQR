@@ -44,7 +44,9 @@ class KHQRMainView: UIView{
     view.layer.cornerRadius = 20
     view.clipsToBounds = true
     view.backgroundColor = .white
-    
+    view.onAmountTap = {[weak self] in
+      self?.onEnterAmount?()
+    }
     /// Constraint
     let widthQR = UIScreen.main.bounds.width - (KHQRConfig.khqrViewPadding * 2)
     let height: CGFloat = (widthQR * 29)/20
