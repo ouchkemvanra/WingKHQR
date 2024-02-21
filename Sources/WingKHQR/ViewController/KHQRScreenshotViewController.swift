@@ -28,7 +28,7 @@ open class KHQRScreenshotViewController: UIViewController{
       case .extraLarge, .large:
         return KHQRConfig.khqrViewPadding
       case .regular:
-        return UIScreen.main.bounds.height < 812 ? 20 : KHQRConfig.khqrViewPadding
+        return 40
       default:
         return 20
     }
